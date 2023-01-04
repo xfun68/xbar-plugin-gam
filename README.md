@@ -16,7 +16,7 @@ ln -s $PWD/gam.1m.sh $HOME/Library/Application\ Support/xbar/plugins/
 1. Click the dancer 💃 just appeared in menu bar
 1. Select `xbar | Open plugin...`
 1. Config required parameters as follow
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+![Alt text](/screenshot/plugin-settings.jpg?raw=true "settings demo")
 1. Reresh the plugin or restart xbar app
 1. Engjoy!
 
