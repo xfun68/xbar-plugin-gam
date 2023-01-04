@@ -9,7 +9,7 @@
 #  <xbar.dependencies>zsh,homebrew,gh,jq</xbar.dependencies>
 #  <xbar.abouturl>TODO</xbar.abouturl>
 
-#  <xbar.var>string(NAME=""): Name to be displayed on menu bar.</xbar.var>
+#  <xbar.var>string(NAME=":dancer:"): Name to be displayed on menu bar.</xbar.var>
 #  <xbar.var>string(REPOS=""): Repo list separated by comma, e.g. 'owner-foo/repo-foo;owner-bar/repo-bar'.</xbar.var>
 #  <xbar.var>string(GITHUB_TOKEN=""): Generate token from here: 'https://github.com/settings/tokens', and do not forget to do SSO.</xbar.var>
 
@@ -43,7 +43,7 @@ function main() {
     echo "---"
 
     if [[ "${LATEST_RUNS}" == '' ]]; then
-        echo "Please config repos via env var 'REPOS'"
+        echo "Please config this plugin first. (xbar -> Open plugin...)"
         return
     fi
 
