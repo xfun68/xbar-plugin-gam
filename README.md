@@ -5,7 +5,9 @@ A xbar plugin used to monitor latest workflow run status in your GitHub orgs. GA
 
 ```bash
 brew install xbar gh jq curl
-curl https://raw.githubusercontent.com/xfun68/xbar-plugin-gam/main/README.md --output $HOME/Library/Application\ Support/xbar/plugins/gam.1m.sh
+git clone git@github.com:xfun68/xbar-plugin-gam.git
+cd xbar-plugin-gam
+ln -s $PWD/gam.1m.sh $HOME/Library/Application\ Support/xbar/plugins/
 ```
 
 ## How to use
