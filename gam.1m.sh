@@ -64,12 +64,19 @@ function main() {
         "timed_out" "$SYMBOL_TIMED_OUT" \
         "skipped" "$SYMBOL_FAST_FORWARD" \
         "stale" "$SYMBOL_BLACK" \
+        "no_runs" "$SYMBOL_WHITE" \
         "[^:].*" "$SYMBOL_UNKNOWN"
 }
 
 function gam_gh_workflow_latest_run() {
+    local RUN=''
     cat | while read -r REPO REST; do
-        echo $(GH_TOKEN=${GITHUB_TOKEN} ${CMD_GH} api "/repos/${REPO}/actions/runs?page=1&per_page=1" | ${CMD_JQ} -jr '.workflow_runs[] | ":", .status, ": ", .repository.name, "/", .name, "| href=", .html_url, "\n"')
+        RUN="$(GH_TOKEN=${GITHUB_TOKEN} ${CMD_GH} api "/repos/${REPO}/actions/runs?page=1&per_page=1" | ${CMD_JQ} -jr '.workflow_runs[] | ":", .status, ": ", .repository.name, "/", .name, "| href=", .html_url, "\n"')"
+        if [[ "${RUN}" != '' ]]; then
+            echo "${RUN}"
+        else
+            echo ":no_runs: ${REPO}"
+        fi
     done
 }
 
