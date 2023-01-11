@@ -59,6 +59,7 @@ function main() {
         "success" "$SYMBOL_GREEN" \
         "failure" "$SYMBOL_RED" \
         "cancelled" "$SYMBOL_CANCELLED" \
+        "pending" "$SYMBOL_YELLOW" \
         "queued" "$SYMBOL_BLUE" \
         "in_progress" "$SYMBOL_INPROGRESS" \
         "waiting" "$SYMBOL_BROWN" \
