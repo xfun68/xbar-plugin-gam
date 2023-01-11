@@ -71,7 +71,7 @@ function main() {
 function gam_gh_workflow_latest_run() {
     local RUN=''
     cat | while read -r REPO REST; do
-        RUN="$(GH_TOKEN=${GITHUB_TOKEN} ${CMD_GH} api "/repos/${REPO}/actions/runs?page=1&per_page=1" | ${CMD_JQ} -jr '.workflow_runs[] | ":", .status, ": ", .repository.name, "/", .name, "| href=", .html_url, "\n"')"
+        RUN="$(GH_TOKEN=${GITHUB_TOKEN} ${CMD_GH} api "/repos/${REPO}/actions/runs?page=1&per_page=1" | ${CMD_JQ} -jr '.workflow_runs[] | ":", if .conclusion then .conclusion else .status end, ": ", .repository.name, "/", .name, "| href=", .html_url, "\n"')"
         if [[ "${RUN}" != '' ]]; then
             echo "${RUN}"
         else
