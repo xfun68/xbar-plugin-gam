@@ -13,8 +13,9 @@
 #  <xbar.var>string(REPOS=""): Repo list separated by comma, e.g. 'owner-foo/repo-foo;owner-bar/repo-bar'.</xbar.var>
 #  <xbar.var>string(GITHUB_TOKEN=""): Generate token from here: 'https://github.com/settings/tokens', and do not forget to do SSO.</xbar.var>
 
-readonly CMD_GH='/opt/homebrew/bin/gh'
-readonly CMD_JQ='/opt/homebrew/bin/jq'
+readonly BREW_PREFIX=$([[ -d '/opt/homebrew/bin' ]] && echo '/opt/homebrew/bin' || echo '/usr/local/bin')
+readonly CMD_GH="${BREW_PREFIX}/gh"
+readonly CMD_JQ="${BREW_PREFIX}/jq"
 
 readonly SYMBOL_GREEN='🟢'
 readonly SYMBOL_RED='🔴'
