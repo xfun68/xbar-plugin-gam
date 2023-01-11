@@ -49,7 +49,7 @@ function main() {
     fi
 
     if [[ "${FAILED_RUNS}" != '' ]]; then
-        FAILED_PIPELINES="$(echo "${FAILED_RUNS}" | cut -d' ' -f2 | cut -d'/' -f1)"
+        FAILED_PIPELINES="$(echo "${FAILED_RUNS}" | cut -d' ' -f2-3 | cut -d'/' -f1)"
         gam_sys_notify "Failed Pipelines" "${FAILED_PIPELINES}"
     fi
 
@@ -73,7 +73,7 @@ function main() {
 function gam_gh_workflow_latest_run() {
     local RUN=''
     cat | while read -r REPO REST; do
-        RUN="$(GH_TOKEN=${GITHUB_TOKEN} ${CMD_GH} api "/repos/${REPO}/actions/runs?page=1&per_page=1" | ${CMD_JQ} -jr '.workflow_runs[] | ":", if .conclusion then .conclusion else .status end, ": ", .repository.name, "/", .name, "| href=", .html_url, "\n"')"
+        RUN="$(GH_TOKEN=${GITHUB_TOKEN} ${CMD_GH} api "/repos/${REPO}/actions/runs?page=1&per_page=1" | ${CMD_JQ} -jr '.workflow_runs[] | ":", if .conclusion then .conclusion else .status end, ": ", .actor.login, " ", .repository.name, "/", .name, "| href=", .html_url, "\n"')"
         if [[ "${RUN}" != '' ]]; then
             echo "${RUN}"
         else
