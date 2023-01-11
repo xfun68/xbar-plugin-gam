@@ -48,10 +48,10 @@ function main() {
         return
     fi
 
-    if [[ "${FAILED_RUNS}" != '' ]]; then
-        FAILED_PIPELINES="$(echo "${FAILED_RUNS}" | cut -d' ' -f2-3 | cut -d'/' -f1)"
-        gam_sys_notify "Failed Pipelines" "${FAILED_PIPELINES}"
-    fi
+    # if [[ "${FAILED_RUNS}" != '' ]]; then
+    #     FAILED_PIPELINES="$(echo "${FAILED_RUNS}" | cut -d' ' -f2-3 | cut -d'/' -f1)"
+    #     gam_sys_notify "Failed Pipelines" "${FAILED_PIPELINES}"
+    # fi
 
     echo "${LATEST_RUNS}" \
     | gam_highlight \
