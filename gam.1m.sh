@@ -38,7 +38,7 @@ readonly DEFAULT_MENU_FONT_COLOR='white'
 function main() {
     local LATEST_RUNS=$(echo "${REPOS}" | tr ';' '\n' | gam_gh_workflow_latest_run)
     local FAILED_RUNS=$(echo ${LATEST_RUNS} | grep -E ':(failure|timed_out|stale):')
-    local FAILED_RUNS_COUNT=$(echo -n "${FAILED_RUNS}" | wc -l | tr -d ' ')
+    local FAILED_RUNS_COUNT=$(gam_count_lines "${FAILED_RUNS}")
     local MENU_FONT_COLOR=$([[ "${FAILED_RUNS}" != '' ]] && echo 'red' || echo ${DEFAULT_MENU_FONT_COLOR})
 
     echo "$(gam_menu_name ${FAILED_RUNS_COUNT}) | color=${MENU_FONT_COLOR}"
@@ -83,6 +83,15 @@ function gam_gh_workflow_latest_run() {
         fi
     done
 }
+
+function gam_count_lines() {
+  if [[ -z "$*" ]]; then
+    echo 0
+    return
+  fi
+  echo "$*" | wc -l | tr -d ' '
+}
+
 
 function gam_menu_name() {
     local RESULT="${NAME}"
